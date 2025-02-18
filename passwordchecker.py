@@ -1,9 +1,6 @@
 import string
-import getpass
-
 
 def check_pwd(password):
-    password = input("Enter password: ")
     strength = 0
     upper_count = lower_count = num_count = 0
 
@@ -16,17 +13,17 @@ def check_pwd(password):
         elif char in string.digits:
             num_count += 1
          
-        if upper_count >= 1: 
+        if upper_count > 0: 
             strength += 1
-        if lower_count >= 1:
+        if lower_count > 0:
             strength += 1
-        if num_count >= 1:
+        if num_count > 0:
             strength += 1
-        if len(password) >= 4:
+        if len(password) >= 8:
             strength += 1
 
     if strength == 1:
-        print("Password strength weak. ")
+        print("Password strength weak. Please enter a stronger password: ")
         return False
     elif strength == 2 or strength == 3:
         print("Password Strength Fair: Consider using more characters")
@@ -34,4 +31,9 @@ def check_pwd(password):
     elif strength == 4:
         print("Password strength is strong")
         return True
-    
+        
+
+while True:
+    password = input("Enter password: ")
+    if check_pwd(password):
+        break
